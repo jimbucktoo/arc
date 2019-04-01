@@ -24,12 +24,13 @@ class ViewController: UIViewController {
     @IBAction func add(_ sender: Any) {
         let node = SCNNode()
         let randomColor = self.generateRandomColor()
-        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
+        let randomChamfer = CGFloat.random(in: -0.1 ..< 0.1)
+        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: randomChamfer)
         node.geometry?.firstMaterial?.specular.contents = UIColor.white
         node.geometry?.firstMaterial?.diffuse.contents = randomColor
         let x = Double.random(in: -0.3 ..< 0.3)
         let y = Double.random(in: -0.3 ..< 0.3)
-        let z = Double.random(in: -0.3 ..< 0.3)
+        let z = Double.random(in: -1.0 ..< -0.3)
 
         node.position = SCNVector3(x,y,z)
         self.sceneView.scene.rootNode.addChildNode(node)
@@ -53,5 +54,5 @@ class ViewController: UIViewController {
         }
         self.sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
+    
 }
-
