@@ -20,25 +20,6 @@ class ViewController: UIViewController {
         self.sceneView.session.run(configuration)
         self.sceneView.autoenablesDefaultLighting = true
     }
-
-    @IBAction func add(_ sender: Any) {
-        let node = SCNNode()
-        let randomColor = self.generateRandomColor()
-        let randomChamfer = CGFloat.random(in: -0.1 ..< 0.1)
-        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: randomChamfer)
-        node.geometry?.firstMaterial?.specular.contents = UIColor.white
-        node.geometry?.firstMaterial?.diffuse.contents = randomColor
-        let x = Double.random(in: -0.3 ..< 0.3)
-        let y = Double.random(in: -0.3 ..< 0.3)
-        let z = Double.random(in: -1.0 ..< -0.3)
-
-        node.position = SCNVector3(x,y,z)
-        self.sceneView.scene.rootNode.addChildNode(node)
-    }
-    
-    @IBAction func reset(_ sender: Any) {
-        self.restartSession()
-    }
     
     func generateRandomColor() -> UIColor {
         let hue : CGFloat = CGFloat(arc4random() % 256) / 256
@@ -46,6 +27,56 @@ class ViewController: UIViewController {
         let brightness : CGFloat = CGFloat(arc4random() % 128) / 256 + 0.5
         
         return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
+    }
+
+    @IBAction func node(_ sender: Any) {
+        let x = Double.random(in: -0.3 ..< 0.3)
+        let y = Double.random(in: -0.3 ..< 0.3)
+        let z = Double.random(in: -1.0 ..< -0.3)
+        let randomColor = self.generateRandomColor()
+        let randomChamfer = CGFloat.random(in: -0.1 ..< 0.1)
+        
+        let node = SCNNode()
+        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: randomChamfer)
+        node.geometry?.firstMaterial?.specular.contents = UIColor.white
+        node.geometry?.firstMaterial?.diffuse.contents = randomColor
+        
+        node.position = SCNVector3(x,y,z)
+        self.sceneView.scene.rootNode.addChildNode(node)
+    }
+    
+    @IBAction func capsule(_ sender: Any) {
+        let x = Double.random(in: -0.3 ..< 0.3)
+        let y = Double.random(in: -0.3 ..< 0.3)
+        let z = Double.random(in: -1.0 ..< -0.3)
+        let randomColor = self.generateRandomColor()
+        
+        let capsule = SCNNode()
+        capsule.geometry = SCNCapsule(capRadius: 0.1, height: 0.3)
+        capsule.geometry?.firstMaterial?.specular.contents = UIColor.white
+        capsule.geometry?.firstMaterial?.diffuse.contents = randomColor
+        
+        capsule.position = SCNVector3(x,y,z)
+        self.sceneView.scene.rootNode.addChildNode(capsule)
+    }
+    
+    @IBAction func cone(_ sender: Any) {
+        let x = Double.random(in: -0.3 ..< 0.3)
+        let y = Double.random(in: -0.3 ..< 0.3)
+        let z = Double.random(in: -1.0 ..< -0.3)
+        let randomColor = self.generateRandomColor()
+        
+        let cone = SCNNode()
+        cone.geometry = SCNCone(topRadius: 0.1, bottomRadius: 0.3, height: 0.3)
+        cone.geometry?.firstMaterial?.specular.contents = UIColor.white
+        cone.geometry?.firstMaterial?.diffuse.contents = randomColor
+        
+        cone.position = SCNVector3(x,y,z)
+        self.sceneView.scene.rootNode.addChildNode(cone)
+    }
+    
+    @IBAction func reset(_ sender: Any) {
+        self.restartSession()
     }
     
     func restartSession(){
