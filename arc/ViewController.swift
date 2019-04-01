@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         
         return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
     }
-
+    
     @IBAction func node(_ sender: Any) {
         let x = Double.random(in: -0.3 ..< 0.3)
         let y = Double.random(in: -0.3 ..< 0.3)
