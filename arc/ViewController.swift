@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         let randomColor = self.generateRandomColor()
         
         let capsule = SCNNode()
-        capsule.geometry = SCNCapsule(capRadius: 0.1, height: 0.3)
+        capsule.geometry = SCNCapsule(capRadius: 0.07, height: 0.3)
         capsule.geometry?.firstMaterial?.specular.contents = UIColor.white
         capsule.geometry?.firstMaterial?.diffuse.contents = randomColor
         
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         let randomColor = self.generateRandomColor()
         
         let cone = SCNNode()
-        cone.geometry = SCNCone(topRadius: 0.1, bottomRadius: 0.3, height: 0.3)
+        cone.geometry = SCNCone(topRadius: 0.0, bottomRadius: 0.1, height: 0.3)
         cone.geometry?.firstMaterial?.specular.contents = UIColor.white
         cone.geometry?.firstMaterial?.diffuse.contents = randomColor
         
